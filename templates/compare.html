@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Compare!
+{% endblock %}
+
+{% block main %}
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-default navbar-expand-lg">
+        <a class="navbar-brand" href="/"><span style="text-decoration: underline">Roughly</span> The Size Of</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/compare">Compare<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Select Form Container -->
+    <div class="jumbotron d-flex align-items-center h-100" style="background:transparent !important">
+    <div class="container">
+        <h2>Which country do you want to compare?</h2>
+            <form action="/compare" method="post">
+                <div class="row justify-content-lg-center">
+                <select class="form-control select-menu col-lg-6  col-md-10  col-sm-10 col-10" name="country">
+
+                      <option>
+                          <!-- Jinja for loop through the database of countries -->
+                        {% for name in names %}
+                        <option value="{{ name["name"] }}"{% if loop.first %} SELECTED{% endif %}>{{ name["name"] }}</option>
+                        {% endfor %}
+                      </option>
+
+                </select>
+                </div>
+
+                <h2> How are you comparing it?</h2>
+                <div class="input-group-radio row justify-content-lg-center">
+                    <div class="radio-button col-lg-4">
+                    <input type="radio" id="size" name="parameter" value="size" checked="checked">
+                    <label for="size">Size</label>
+                    </div>
+                    <div class="radio-button col-lg-4">
+                    <input type="radio" id="population" name="parameter" value="population">
+                    <label for="population">Population</label>
+                    </div>
+                </div>
+                <button class="btn btn-lg btn-dark" type="submit">Compare</button>
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock %}

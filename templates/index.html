@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Roughly The Size Of
+{% endblock %}
+
+{% block main %}
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-default navbar-expand-lg">
+        <a class="navbar-brand" href="/"><span style="text-decoration: underline">Roughly</span> The Size Of</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/compare">Compare</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+
+        <!-- Title Container -->
+
+        <div class="jumbotron d-flex align-items-center" style="background:transparent !important">
+                <div class="container">
+
+                    <!-- Main title and subtitle plus description -->
+
+                    <h1 id="title"><span style="background-color:#f0dacd; text-decoration: underline">Roughly</span> The Size Of</h1>
+
+                    <h2 class="subtitle">World Geography, In Rough Terms</h2>
+
+                    <p>Learn the size of any country by finding out which US state it’s comparable to in terms of land mass or population.</p>
+
+                    <a class="btn btn-lg btn-dark" href="/compare" role="button">Let’s Go!</a>
+                </div>
+        </div>
+</body>
+{% endblock %}

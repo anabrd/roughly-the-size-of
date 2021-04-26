@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Population Comparison
+{% endblock %}
+
+{% block main %}
+
+<body>
+
+<!-- Navigation Bar -->
+    <nav class="navbar navbar-default navbar-expand-lg">
+        <a class="navbar-brand" href="/"><span style="text-decoration: underline">Roughly</span> The Size Of</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/compare">Compare<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--- RESULTS -->
+
+    <div class="container">
+
+        <div class="row results">
+            {% if country_pop < 400000 %}
+
+                <div class="col-lg-6 col-12 my-auto">
+                    <h2>Oops, the population of <strong>{{ country_name }}</strong> is much smaller than that of any US state :(</h2>
+                </div>
+
+                <div class="col-lg-6 my-auto">
+                    <img class="result-img" src="/static/images/USA.png" alt="US Map">
+                </div>
+
+            {% elif ratio > 1.5 %}
+                <div class="col-lg-6 col-12 my-auto">
+                    <h2><strong>{{ country_name }}</strong> has roughly the population of <strong>{{ ratio|int }} {{ state_name }}s</strong></h2>
+                </div>
+
+                <div class="col-lg-6 col-12 my-auto d-flex">
+                {% for n in range(ratio) %}
+                    <div class="col">
+                        <img class="result-img" src="{{ url_for('static', filename='images/' + state_name  + '.png') }}" alt="{{ state_name }}">
+                    </div>
+                {% endfor %}
+                </div>
+            {% else %}
+                <div class="col-lg-6 col-12 my-auto">
+                    <h2><strong>{{ country_name }}</strong> has roughly the population of <strong>{{ state_name }}</strong></h2>
+                </div>
+
+                <div class="col-lg-6 my-auto">
+                    <img class="result-img" src="{{ url_for('static', filename='images/' + state_name  + '.png') }}">
+                </div>
+            {% endif %}
+
+        </div>
+        <a class="btn btn-lg btn-dark" href="/compare" role="button">Try Again</a>
+        <a class="btn btn-lg btn-outline-dark" href="/searches" role="button">See History</a>
+</div>
+
+    <footer>Information sourced from World Bank Open Data, United States Census Bureau.</footer>
+
+
+</body>
+{% endblock %}
