@@ -36,14 +36,10 @@
             <form action="/compare" method="post">
                 <div class="row justify-content-lg-center">
                 <select class="form-control select-menu col-lg-6  col-md-10  col-sm-10 col-10" name="country">
-
-                      <option>
-                          <!-- Jinja for loop through the database of countries -->
+                        <!-- Jinja for loop through the database of countries -->
                         {% for name in names %}
-                        <option value="{{ name["name"] }}"{% if loop.first %} SELECTED{% endif %}>{{ name["name"] }}</option>
+                        <option  value="{{ name["name"] }}"{% if loop.first %} SELECTED {% endif %}>{{ name["name"] }}</option>
                         {% endfor %}
-                      </option>
-
                 </select>
                 </div>
 
@@ -62,5 +58,8 @@
             </form>
         </div>
     </div>
+    <script>
+          
+    </script>
 </body>
 {% endblock %}
